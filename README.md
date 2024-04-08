@@ -13,6 +13,13 @@ This Tetris game is developed using Java's Swing and AWT libraries, offering a c
 - **Collision Detection:** Ensures a realistic gameplay experience.
 - **Music and Sound Effects:** Enhances gameplay with engaging audio.
 
+
+## ScreenShots
+
+
+![Screenshot (813)](https://github.com/Hasnatrasool163/Tetris-in-Java/assets/153990457/805291a0-b07b-4f75-bad6-b0fa70fda65d)
+
+
 ## Getting Started
 
 ### Prerequisites
@@ -37,12 +44,14 @@ Ensure you have Java Development Kit (JDK) installed on your machine to run and 
 
     ```bash
     javac tetris/Game.java
+    javac Main.java
     ```
 
 4. Run the game:
 
     ```bash
     java tetris.Game
+    java Main
     ```
 
 ## How to Play
