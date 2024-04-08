@@ -1,0 +1,11 @@
+Tetris is one of the most iconic and enduring puzzle video games in the history of gaming. Conceived and programmed by Russian software engineer Alexey Pajitnov in 1984, it was released on June 6, 1984. Pajitnov created Tetris while working at the Dorodnitsyn Computing Centre of the Academy of Science of the USSR in Moscow, with the game's name deriving from the Greek numerical prefix "tetra-" (all of the game's pieces contain four segments) and tennis, Pajitnov's favorite sport.
+
+The game is deceptively simple yet addictive. It involves different geometric shapes, called "tetriminos," which fall from the top of the screen at a steady pace. Players must rotate and place these tetriminos to form complete rows, which then disappear, awarding points to the player and freeing up space for more pieces. The game ends when the stack of tetriminos reaches the top of the playing field and no new pieces can enter. The challenge and thrill come from managing the space effectively and dealing with the increasing speed of falling tetriminos.
+
+Tetris gained immense popularity after it was ported to a wide variety of platforms, most notably the Game Boy in 1989. This version, in particular, is credited with contributing significantly to the handheld's success, turning it into a must-have accessory and bringing Tetris into mainstream culture.
+
+Over the years, Tetris has seen countless variations and has been released on nearly every gaming platform, from PCs and consoles to mobile phones and online platforms. Its universal appeal lies in its simplicity, making it accessible to players of all ages and skill levels, while the challenge of beating personal high scores provides endless replayability.
+
+The game has also been studied for its psychological effects, with some researchers suggesting that playing Tetris can reduce the occurrence of traumatic memories and improve spatial skills. It's a testament to the game's design that it can be both a form of entertainment and a tool for cognitive research.
+
+Tetris remains a beloved and influential game in the gaming community, symbolizing the power of simple, brilliant game design to capture the imagination of players around the world.
