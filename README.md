@@ -71,7 +71,7 @@ The objective is to place the tetrominoes to create complete lines, which will t
 
 ## Authors
 
-- Muhammad Hasnat Rasool - *Initial work* - [YourGitHub](https://github.com/yourusername)
+- Muhammad Hasnat Rasool - *Initial work* - [YourGitHub](https://github.com/hasnatrasool163)
 
 
 ## Acknowledgments
