@@ -8,16 +8,20 @@ public class GamePanel extends JPanel implements Runnable{
     public static  final int WIDTH=1150;
     public static  final int HEIGHT=620;
 
-    final int FPS =60; // to update screen 60 times a second (frames per seconds)
+    final int FPS = 60; // to update screen 60 times a second (frames per seconds)
     Thread GameThread; // to run game loop
 
     PlayManager pm = new PlayManager();
-
+    MenuHandler mh = new MenuHandler();
     public static Sound music = new Sound();
     public static Sound se = new Sound();
 
 
-    public GamePanel(){
+    boolean gamestart = false;
+
+
+
+    public GamePanel() {
         // panel settings
 
         this.setPreferredSize(new Dimension(WIDTH,HEIGHT));
@@ -27,6 +31,7 @@ public class GamePanel extends JPanel implements Runnable{
         this.setFocusable(true);
 
     }
+
 
     public void LaunchGame(){
         GameThread = new Thread(this);
@@ -64,21 +69,34 @@ public class GamePanel extends JPanel implements Runnable{
         }
     }
 
-    private void update(){
+    private void update() {
 
-        if(KeyHandler.pausePressed == false && pm.gameOver == false) // only update when game not paused
-            // if pressed space game will act like freeze
+        if (KeyHandler.gamestart == false) {
+            mh.update();
+        }
+        if (KeyHandler.gamequit == true)
         {
-
+            System.exit(0);
+        }
+        else if(KeyHandler.pausePressed == false && pm.gameOver == false)
+        {
         pm.update();
         }
     }
 
-    public void paintComponent(Graphics g){
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        Graphics2D g2 = (Graphics2D)g;
-        pm.draw(g2);
+        Graphics2D g2 = (Graphics2D) g;
+        if (KeyHandler.gamestart == false)
+        {
+            mh.draw(g2);
+       }
+        else {
+         pm.draw(g2);
+        }
+//        pm.draw(g2);
+
     }
 
 }

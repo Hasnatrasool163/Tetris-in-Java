@@ -5,7 +5,24 @@ import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
 
+    public Controller buttons = new Controller();
+
+    public GameCommandStart startcomamnd = new GameCommandStart();
+    public GameCommandQuit quitcomamnd = new GameCommandQuit();
+
+
+
     public static boolean upPressed,downPressed,leftPressed,rightPressed,pausePressed;
+
+    public static boolean gamestart = false;
+    public static boolean gamequit = false;
+
+    public KeyHandler()
+    {
+        buttons.setSlot(startcomamnd);
+        buttons.setSlot(quitcomamnd);
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {}
 
@@ -46,6 +63,13 @@ public class KeyHandler implements KeyListener {
                 GamePanel.music.stop();
             }
         }
+        if(code == KeyEvent.VK_1){
+            buttons.pressbuton(0);
+        }
+        if(code == KeyEvent.VK_2){
+            buttons.pressbuton(1);
+        }
+
 
     }
 

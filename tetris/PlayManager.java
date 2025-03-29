@@ -107,38 +107,45 @@ public class PlayManager {
 
     public void update() {
         // check if the current is active
-        if (currentMino.active == false) {
-            // if not active add that in static block
-            staticBlocks.add(currentMino.b[0]);
-            staticBlocks.add(currentMino.b[1]);
-            staticBlocks.add(currentMino.b[2]);
-            staticBlocks.add(currentMino.b[3]);
+        if(KeyHandler.gamestart == false)
+        {
 
-            // game over check
-            if (currentMino.b[0].x == MINO_START_X && currentMino.b[0].y == MINO_START_Y) {
-// this means the current mino immediately collided a block and couldn't move at all
-                // so its x and y are same as next mino
-                // no space left so
-                // game is over
-                gameOver = true;
-                GamePanel.music.stop();
-                GamePanel.se.play(2,false);
-            }
-
-            currentMino.deactivating = false; // reset
-
-            // replace the current mino with the nextMino
-
-            currentMino = nextMino;
-            currentMino.setXY(MINO_START_X, MINO_START_Y);
-            nextMino = minoPicker();
-            nextMino.setXY(NEXT_MINO_X, NEXT_MINO_Y);
-
-            // check if a mino is inactive and check if line can be deleted
-            checkDelete();
-        } else {
-            currentMino.update();
         }
+        else{
+            if (currentMino.active == false) {
+                // if not active add that in static block
+                staticBlocks.add(currentMino.b[0]);
+                staticBlocks.add(currentMino.b[1]);
+                staticBlocks.add(currentMino.b[2]);
+                staticBlocks.add(currentMino.b[3]);
+
+                // game over check
+                if (currentMino.b[0].x == MINO_START_X && currentMino.b[0].y == MINO_START_Y) {
+// this means the current mino immediately collided a block and couldn't move at all
+                    // so its x and y are same as next mino
+                    // no space left so
+                    // game is over
+                    gameOver = true;
+                    GamePanel.music.stop();
+                    GamePanel.se.play(2,false);
+                }
+
+                currentMino.deactivating = false; // reset
+
+                // replace the current mino with the nextMino
+
+                currentMino = nextMino;
+                currentMino.setXY(MINO_START_X, MINO_START_Y);
+                nextMino = minoPicker();
+                nextMino.setXY(NEXT_MINO_X, NEXT_MINO_Y);
+
+                // check if a mino is inactive and check if line can be deleted
+                checkDelete();
+            } else {
+                currentMino.update();
+            }
+        }
+
     }
 
     private void checkDelete() {

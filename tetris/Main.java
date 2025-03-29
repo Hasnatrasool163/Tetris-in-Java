@@ -1,6 +1,7 @@
 package tetris;
 
 import javax.swing.*;
+import java.awt.event.KeyListener;
 
 public class Main {
 
@@ -11,19 +12,15 @@ public class Main {
         window.setResizable(false);
 
 
-        // add game panel to the window
 
         GamePanel gp = new GamePanel();
+
         window.add(gp);
         window.pack();
 
-        // added JPanel to JFrame
-        //  now the size of game panel becomes the size of JFrame
-
+        gp.LaunchGame();
         window.setLocationRelativeTo(null);
         window.setVisible(true);
-
-        gp.LaunchGame();
 
     }
 }
