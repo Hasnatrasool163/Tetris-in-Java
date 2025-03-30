@@ -10,11 +10,10 @@ public class Main {
         JFrame window = new JFrame("Simple Tetris");
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         window.setResizable(false);
+        KeyHandler kh = new KeyHandler();
+        GamePanel gp = new GamePanel(kh);
 
-
-
-        GamePanel gp = new GamePanel();
-
+        kh.addObserver(gp);
         window.add(gp);
         window.pack();
 
