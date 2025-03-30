@@ -2,15 +2,17 @@ package tetris;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.Observer;
 
-public class KeyHandler implements KeyListener {
+public class KeyHandler implements KeyListener, Subject {
 
     public Controller buttons = new Controller();
 
     public GameCommandStart startcomamnd = new GameCommandStart();
     public GameCommandQuit quitcomamnd = new GameCommandQuit();
 
-
+    public static ArrayList<PowerUpObserver> observers = new ArrayList<>();
 
     public static boolean upPressed,downPressed,leftPressed,rightPressed,pausePressed;
 
@@ -69,10 +71,31 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_2){
             buttons.pressbuton(1);
         }
+        if(code == KeyEvent.VK_S){
+            notifyObservers();
+        }
 
 
     }
 
     @Override
     public void keyReleased(KeyEvent e) {}
+
+    @Override
+    public void addObserver(PowerUpObserver o) {
+        observers.add((PowerUpObserver) o);
+    }
+
+    @Override
+    public void removeObserver(PowerUpObserver o) {
+        observers.remove(o);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for(PowerUpObserver o : observers)
+        {
+            o.PowerUpUpdate();
+        }
+    }
 }

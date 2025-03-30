@@ -11,6 +11,8 @@ import mino.*;
 import java.awt.*;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Random;
 
 public class PlayManager {
@@ -47,7 +49,7 @@ public class PlayManager {
     int effectCounter;
     ArrayList<Integer> effectY = new ArrayList<>();
 
-    int level =1;
+    int level = 1;
     int lines;
     int score;
 
@@ -278,6 +280,25 @@ public class PlayManager {
             }
 
         }
+        //Draw PowerUp notifier
+        if(GamePanel.powerupInProgress){
+            g2.setColor(Color.WHITE);
+            g2.setFont(new Font("Arial", Font.PLAIN, 30));
+            g2.drawString("Powerup In Progress", 50, 200);
+        }
+        else if(GamePanel.powerupused){
+            g2.setColor(Color.WHITE);
+            g2.setFont(new Font("Arial", Font.PLAIN, 30));
+            g2.drawString("Powerup on cooldown", 50, 200);
+        }
+        else if(!GamePanel.powerupInProgress){
+            g2.setColor(Color.WHITE);
+            g2.setFont(new Font("Arial", Font.PLAIN, 30));
+            g2.drawString("Press S to use slowdown!", 50, 200);
+        }
+
+
+
         // draw pause or gameover
 
         g2.setColor(Color.YELLOW);
@@ -299,4 +320,7 @@ public class PlayManager {
          g2.drawString("Tetris in Java",x,y);
 
     }
+
+
+
 }
