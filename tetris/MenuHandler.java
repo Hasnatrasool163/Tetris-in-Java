@@ -21,9 +21,28 @@ public class MenuHandler {
     public static int bottom_y;
 
     public void draw(Graphics2D g2){
-        g2.setColor(Color.green);
-        g2.setFont(new Font("Times New Roman", Font.PLAIN, 50));
-        g2.drawString("Press 1 to start, Press 2 to Quit", WIDTH-900, HEIGHT/2);
+        // Draw a professional gradient background for the menu
+        GradientPaint menuBG = new GradientPaint(0, 0, Color.DARK_GRAY, 0, HEIGHT, Color.BLACK);
+        g2.setPaint(menuBG);
+        g2.fillRect(0, 0, WIDTH, HEIGHT);
+
+        // Enable text anti-aliasing for smoother text
+        g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+
+        // Draw a prominent game title
+        g2.setColor(Color.WHITE);
+        Font titleFont = new Font("Verdana", Font.BOLD, 64);
+        g2.setFont(titleFont);
+        String title = "Tetris Pro";
+        int titleWidth = g2.getFontMetrics().stringWidth(title);
+        g2.drawString(title, (WIDTH - titleWidth) / 2, HEIGHT / 3);
+
+        // Draw refined instructions
+        Font instrFont = new Font("SansSerif", Font.PLAIN, 24);
+        g2.setFont(instrFont);
+        String instructions = "Press 1 to Start, Press 2 to Quit";
+        int instrWidth = g2.getFontMetrics().stringWidth(instructions);
+        g2.drawString(instructions, (WIDTH - instrWidth) / 2, HEIGHT / 2);
     }
 
     public void update()

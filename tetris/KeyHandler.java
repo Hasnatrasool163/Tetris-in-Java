@@ -13,7 +13,7 @@ public class KeyHandler implements KeyListener, Subject {
     public GameCommandQuit quitcomamnd = new GameCommandQuit();
 
     public static ArrayList<PowerUpObserver> observers = new ArrayList<>();
-
+    public static boolean musicOn = false;
     public static boolean upPressed,downPressed,leftPressed,rightPressed,pausePressed;
 
     public static boolean gamestart = false;
@@ -74,8 +74,18 @@ public class KeyHandler implements KeyListener, Subject {
         if(code == KeyEvent.VK_S){
             notifyObservers();
         }
-
-
+        if(code == KeyEvent.VK_M) {
+            if (musicOn) {
+                GamePanel.music.stop();
+                musicOn = false;
+                System.out.println("Music Off");
+            } else {
+                GamePanel.music.play(0, true);
+                GamePanel.music.loop();
+                musicOn = true;
+                System.out.println("Music On");
+            }
+        }
     }
 
     @Override

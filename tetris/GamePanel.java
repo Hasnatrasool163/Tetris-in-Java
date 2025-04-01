@@ -41,8 +41,7 @@ public class GamePanel extends JPanel implements Runnable, PowerUpObserver {
     public void LaunchGame(){
         GameThread = new Thread(this);
         GameThread.start();
-        music.play(0,true);
-        music.loop();
+
     }
 
     @Override
