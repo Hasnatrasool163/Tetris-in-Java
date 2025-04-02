@@ -42,8 +42,7 @@ Ensure you have Java Development Kit (JDK) installed on your machine to run and 
     git clone https://github.com/hasnatrasool163/Tetris-in-Java.git
     ```
 
-2. Navigate to the clone![Menu](https://github.com/user-attachments/assets/0954b07b-8ff9-4f9e-b6c8-3416347128b2)
-d directory:
+2. Navigate to the cloned directory:
 
     ```bash
     cd java-tetris-game
