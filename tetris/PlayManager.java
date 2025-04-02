@@ -11,6 +11,8 @@ import mino.*;
 import java.awt.*;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Random;
 
 public class PlayManager {
@@ -47,7 +49,7 @@ public class PlayManager {
     int effectCounter;
     ArrayList<Integer> effectY = new ArrayList<>();
 
-    int level =1;
+    int level = 1;
     int lines;
     int score;
 
@@ -107,38 +109,45 @@ public class PlayManager {
 
     public void update() {
         // check if the current is active
-        if (currentMino.active == false) {
-            // if not active add that in static block
-            staticBlocks.add(currentMino.b[0]);
-            staticBlocks.add(currentMino.b[1]);
-            staticBlocks.add(currentMino.b[2]);
-            staticBlocks.add(currentMino.b[3]);
+        if(KeyHandler.gamestart == false)
+        {
 
-            // game over check
-            if (currentMino.b[0].x == MINO_START_X && currentMino.b[0].y == MINO_START_Y) {
-// this means the current mino immediately collided a block and couldn't move at all
-                // so its x and y are same as next mino
-                // no space left so
-                // game is over
-                gameOver = true;
-                GamePanel.music.stop();
-                GamePanel.se.play(2,false);
-            }
-
-            currentMino.deactivating = false; // reset
-
-            // replace the current mino with the nextMino
-
-            currentMino = nextMino;
-            currentMino.setXY(MINO_START_X, MINO_START_Y);
-            nextMino = minoPicker();
-            nextMino.setXY(NEXT_MINO_X, NEXT_MINO_Y);
-
-            // check if a mino is inactive and check if line can be deleted
-            checkDelete();
-        } else {
-            currentMino.update();
         }
+        else{
+            if (currentMino.active == false) {
+                // if not active add that in static block
+                staticBlocks.add(currentMino.b[0]);
+                staticBlocks.add(currentMino.b[1]);
+                staticBlocks.add(currentMino.b[2]);
+                staticBlocks.add(currentMino.b[3]);
+
+                // game over check
+                if (currentMino.b[0].x == MINO_START_X && currentMino.b[0].y == MINO_START_Y) {
+// this means the current mino immediately collided a block and couldn't move at all
+                    // so its x and y are same as next mino
+                    // no space left so
+                    // game is over
+                    gameOver = true;
+                    GamePanel.music.stop();
+                    GamePanel.se.play(2,false);
+                }
+
+                currentMino.deactivating = false; // reset
+
+                // replace the current mino with the nextMino
+
+                currentMino = nextMino;
+                currentMino.setXY(MINO_START_X, MINO_START_Y);
+                nextMino = minoPicker();
+                nextMino.setXY(NEXT_MINO_X, NEXT_MINO_Y);
+
+                // check if a mino is inactive and check if line can be deleted
+                checkDelete();
+            } else {
+                currentMino.update();
+            }
+        }
+
     }
 
     private void checkDelete() {
@@ -212,84 +221,95 @@ public class PlayManager {
     }
 
     public void draw(Graphics2D g2) {
+        // Enable anti-aliasing for smoother rendering
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
+        // Draw a gradient background for the play area
+        GradientPaint playBG = new GradientPaint(left_x, top_y, Color.GRAY, right_x, bottom_y, Color.DARK_GRAY);
+        g2.setPaint(playBG);
+        g2.fillRect(left_x, top_y, WIDTH, HEIGHT);
 
-        // draw play area frame
+        // Draw the play area frame with a clean white border
         g2.setColor(Color.WHITE);
         g2.setStroke(new BasicStroke(4f));
         g2.drawRect(left_x - 4, top_y - 2, WIDTH + 8, HEIGHT + 8);
 
-        // another frame
-
+        // Draw Next Mino box with refined style
         int x = right_x + 100;
         int y = bottom_y - 200;
+        g2.setColor(Color.LIGHT_GRAY);
         g2.drawRect(x, y, 200, 200);
-        g2.setFont(new Font("Arial", Font.PLAIN, 30));
-        g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        g2.setFont(new Font("Arial", Font.BOLD, 30));
         g2.drawString("Next", x + 70, y + 60);
 
-        // score
-        g2.drawRect(x,top_y,250,300);
+        // Draw Score panel with modern font
+        g2.drawRect(x, top_y, 250, 300);
         x += 40;
-        y = top_y +90;
-        g2.drawString("Level : "+level,x,y);
-        y+=70;
-        g2.drawString("Lines : "+lines,x,y);
-        y+=70;
-        g2.drawString("Score : "+score,x,y);
+        y = top_y + 90;
+        g2.setFont(new Font("SansSerif", Font.BOLD, 28));
+        g2.drawString("Level : " + level, x, y);
+        y += 70;
+        g2.drawString("Lines : " + lines, x, y);
+        y += 70;
+        g2.drawString("Score : " + score, x, y);
 
-
-
-
-        // draw the current Mino
-
+        // Draw current mino, next mino, and static blocks as before
         if (currentMino != null) {
             currentMino.draw(g2);
         }
-
-        nextMino.draw(g2);  // show next mino
-
-        // draw static blocks
-
-        for (int i = 0; i < staticBlocks.size(); i++) { // scan the list and draw one by one
+        nextMino.draw(g2);
+        for (int i = 0; i < staticBlocks.size(); i++) {
             staticBlocks.get(i).draw(g2);
         }
 
+        // Draw any effects (line deletion, etc.) using a subtle style
         if (effectsCounterOn) {
             effectCounter++;
             g2.setColor(Color.RED);
-
             for (int i = 0; i < effectY.size(); i++) {
                 g2.fillRect(left_x, effectY.get(i), WIDTH, Block.SIZE);
             }
             if (effectCounter == 10) {
-
                 effectsCounterOn = false;
                 effectCounter = 0;
                 effectY.clear();
-
             }
-
         }
-        // draw pause or gameover
 
+        // Draw PowerUp notifications with updated style
+        if (GamePanel.powerupInProgress) {
+            g2.setColor(Color.YELLOW);
+            g2.setFont(new Font("SansSerif", Font.BOLD, 26));
+            g2.drawString("Powerup In Progress", 50, 200);
+        } else if (GamePanel.powerupused) {
+            g2.setColor(Color.ORANGE);
+            g2.setFont(new Font("SansSerif", Font.BOLD, 26));
+            g2.drawString("Powerup on cooldown", 50, 200);
+        } else {
+            g2.setColor(Color.CYAN);
+            g2.setFont(new Font("SansSerif", Font.BOLD, 26));
+            g2.drawString("Press S to use slowdown!", 50, 200);
+        }
+
+        // Draw pause or game over messages with a professional look
         g2.setColor(Color.YELLOW);
-        g2.setFont(g2.getFont().deriveFont(50f));
+        g2.setFont(new Font("Verdana", Font.BOLD, 50));
         if (gameOver) {
-            x = left_x + 15;
-            y = top_y + 320;
+            x = left_x + (WIDTH / 8);
+            y = top_y + (HEIGHT / 2);
             g2.drawString("GAME OVER", x, y);
-
         } else if (KeyHandler.pausePressed) {
-            x = left_x + 70;
-            y = top_y + 320;
+            x = left_x + (WIDTH / 8);
+            y = top_y + (HEIGHT / 2);
             g2.drawString("Paused", x, y);
         }
-         x = 35;
-         y = top_y +320;
-         g2.setColor(Color.WHITE);
-         g2.setFont(new Font("TimesNewRoman",Font.ITALIC,60));
-         g2.drawString("Tetris in Java",x,y);
+
+        // Draw a stylish game title on the game screen
+        x = 35;
+        y = top_y + 50;
+        g2.setColor(Color.WHITE);
+        g2.setFont(new Font("Times New Roman", Font.ITALIC, 40));
+        g2.drawString("Tetris Pro", x, y);
 
     }
 }
