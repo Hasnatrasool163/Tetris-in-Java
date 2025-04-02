@@ -80,29 +80,16 @@ public class PlayManager {
         Mino mino = null;
         int i = new Random().nextInt(7); // used random class to generate mino (0-6)
 
-        switch (i) {
-            case 0:
-                mino = new Mino_L1();
-                break;
-            case 1:
-                mino = new Mino_L2();
-                break;
-            case 2:
-                mino = new Mino_Square();
-                break;
-            case 3:
-                mino = new Mino_Bar();
-                break;
-            case 4:
-                mino = new Mino_T();
-                break;
-            case 5:
-                mino = new Mino_Z1();
-                break;
-            case 6:
-                mino = new Mino_Z2();
-                break;
-        }
+        mino = switch (i) {
+            case 0 -> new Mino_L1();
+            case 1 -> new Mino_L2();
+            case 2 -> new Mino_Square();
+            case 3 -> new Mino_Bar();
+            case 4 -> new Mino_T();
+            case 5 -> new Mino_Z1();
+            case 6 -> new Mino_Z2();
+            default -> mino;
+        };
         return mino;
     }
 
