@@ -11,8 +11,7 @@ import mino.*;
 import java.awt.*;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+
 import java.util.Random;
 
 public class PlayManager {
@@ -160,8 +159,8 @@ public class PlayManager {
         // so maximum number of blocks are 12 if one line got 12 blocks we can delete line
         while (x < right_x && y < bottom_y) {
 
-            for (int i = 0; i < PlayManager.staticBlocks.size(); i++) { // scanning
-                if (staticBlocks.get(i).x == x && staticBlocks.get(i).y == y) {
+            for (Block block : PlayManager.staticBlocks) { // scanning
+                if (block.x == x && block.y == y) {
                     // increase the count
                     blockCount++;
 

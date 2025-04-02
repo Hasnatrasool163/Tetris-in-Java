@@ -2,8 +2,7 @@ package tetris;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Timer;
-import java.util.TimerTask;
+
 public class GamePanel extends JPanel implements Runnable, PowerUpObserver {
 
     public static  final int WIDTH=1150;
@@ -154,7 +153,7 @@ public class GamePanel extends JPanel implements Runnable, PowerUpObserver {
            powerupInProgress = true;
            PowerupCounter = 0;
        }
-       else if(powerupused){
+       else {
            System.out.println("the power up is on cooldown");
        }
     }

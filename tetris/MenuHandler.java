@@ -1,11 +1,8 @@
 package tetris;
 
-import mino.*;
 
 import java.awt.*;
 import java.awt.Graphics2D;
-import java.util.ArrayList;
-import java.util.Random;
 
 
 public class MenuHandler {
