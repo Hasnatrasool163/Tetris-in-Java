@@ -16,9 +16,17 @@ This Tetris game is developed using Java's Swing and AWT libraries, offering a c
 
 ## ScreenShots
 
+1) Menu
 
+![Menu](https://github.com/user-attachments/assets/d0e1e0f7-085c-4aed-89f5-779993645f8c)
+
+2) Old Version
+   
 ![Screenshot (813)](https://github.com/Hasnatrasool163/Tetris-in-Java/assets/153990457/805291a0-b07b-4f75-bad6-b0fa70fda65d)
 
+3) Enhanced Version
+
+![Tetris-in-Java](https://github.com/user-attachments/assets/7a5d2767-1318-4ae8-afa8-7e6e2730bf8f)
 
 ## Getting Started
 
@@ -34,7 +42,8 @@ Ensure you have Java Development Kit (JDK) installed on your machine to run and 
     git clone https://github.com/hasnatrasool163/Tetris-in-Java.git
     ```
 
-2. Navigate to the cloned directory:
+2. Navigate to the clone![Menu](https://github.com/user-attachments/assets/0954b07b-8ff9-4f9e-b6c8-3416347128b2)
+d directory:
 
     ```bash
     cd java-tetris-game
