@@ -109,12 +109,12 @@ public class PlayManager {
 
     public void update() {
         // check if the current is active
-        if(KeyHandler.gamestart == false)
+        if(!KeyHandler.gamestart)
         {
 
         }
         else{
-            if (currentMino.active == false) {
+            if (!currentMino.active) {
                 // if not active add that in static block
                 staticBlocks.add(currentMino.b[0]);
                 staticBlocks.add(currentMino.b[1]);
@@ -199,12 +199,12 @@ public class PlayManager {
                     }
 
                     // a line has deleted so need to move down blocks
-                    for (int i = 0; i < staticBlocks.size(); i++) {
+                    for (Block staticBlock : staticBlocks) {
 
                         // if a block is above the current y , move it down by the block size
 
-                        if (staticBlocks.get(i).y < y) {
-                            staticBlocks.get(i).y += Block.SIZE;
+                        if (staticBlock.y < y) {
+                            staticBlock.y += Block.SIZE;
                         }
                     }
                 }
@@ -258,16 +258,16 @@ public class PlayManager {
             currentMino.draw(g2);
         }
         nextMino.draw(g2);
-        for (int i = 0; i < staticBlocks.size(); i++) {
-            staticBlocks.get(i).draw(g2);
+        for (Block staticBlock : staticBlocks) {
+            staticBlock.draw(g2);
         }
 
         // Draw any effects (line deletion, etc.) using a subtle style
         if (effectsCounterOn) {
             effectCounter++;
             g2.setColor(Color.RED);
-            for (int i = 0; i < effectY.size(); i++) {
-                g2.fillRect(left_x, effectY.get(i), WIDTH, Block.SIZE);
+            for (Integer integer : effectY) {
+                g2.fillRect(left_x, integer, WIDTH, Block.SIZE);
             }
             if (effectCounter == 10) {
                 effectsCounterOn = false;

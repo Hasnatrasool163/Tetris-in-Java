@@ -43,6 +43,10 @@ public class MenuHandler {
         String instructions = "Press 1 to Start, Press 2 to Quit";
         int instrWidth = g2.getFontMetrics().stringWidth(instructions);
         g2.drawString(instructions, (WIDTH - instrWidth) / 2, HEIGHT / 2);
+
+        instructions = "Press M to turn On the Music";
+        instrWidth = g2.getFontMetrics().stringWidth(instructions);
+        g2.drawString(instructions, (WIDTH - instrWidth) / 2, (int) (HEIGHT / (1.5)));
     }
 
     public void update()

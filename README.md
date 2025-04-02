@@ -61,6 +61,7 @@ Ensure you have Java Development Kit (JDK) installed on your machine to run and 
 - **Rotate:** Up arrow key / W
 - **Drop:** Down arrow key / S
 - **Pause/Resume Game:** Press 'SpaceBar'
+- **Music:** Press 'M' to toggle music
 
 The objective is to place the tetrominoes to create complete lines, which will then be cleared from the board. The game ends when the Tetris playfield is filled.
 
@@ -71,8 +72,11 @@ The objective is to place the tetrominoes to create complete lines, which will t
 
 ## Authors
 
-- Muhammad Hasnat Rasool - *Initial work* - [YourGitHub](https://github.com/hasnatrasool163)
+- Muhammad Hasnat Rasool - *Initial work* - [GitHubLink](https://github.com/hasnatrasool163)
 
+## Top Contributors
+
+- Digi-Bomb -[GitHubLink](https://github.com/Digi-Bomb)
 
 ## Acknowledgments
 

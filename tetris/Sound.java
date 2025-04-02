@@ -8,7 +8,7 @@ public class Sound {
 
     Clip musicClip;
 
-    URL url[] = new URL[10];
+    URL[] url = new URL[10];
 
     public Sound(){
         url[0]= getClass().getResource("tile.wav");
@@ -39,11 +39,7 @@ public class Sound {
             ais.close();
             clip.start();
 
-        } catch (UnsupportedAudioFileException ex) {
-            throw new RuntimeException(ex);
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        } catch (LineUnavailableException ex) {
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
             throw new RuntimeException(ex);
         }
 
@@ -52,8 +48,10 @@ public class Sound {
             musicClip.loop(Clip.LOOP_CONTINUOUSLY);
     }
     public void stop(){
+        if(musicClip!=null){
         musicClip.stop();
         musicClip.close();
+        }
 
     }
 }

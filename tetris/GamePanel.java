@@ -51,7 +51,7 @@ public class GamePanel extends JPanel implements Runnable, PowerUpObserver {
         // we perform 2 task
         // update + draw
         // in update we update position x and y
-        double drawInterval = 1000000000/FPS;
+        double drawInterval = (double) 1000000000 /FPS;
         double delta =0;
 
         long lastTime = System.nanoTime();
@@ -88,23 +88,23 @@ public class GamePanel extends JPanel implements Runnable, PowerUpObserver {
                 poweruptimedelta--;
 
                 //This logic takes care of the power up being on cooldown
-                if(powerupused == true && powerupCounter >= 20){
+                if(powerupused && powerupCounter >= 20){
                     powerupused = false;
                     powerupCounter = 0;
                     System.out.println("Powerup Rest: " + powerupCounter);
                 }
-                else if(powerupused == true && powerupCounter < 20){
+                else if(powerupused && powerupCounter < 20){
                     powerupCounter++;
                     System.out.println("Powerup Counter: " + powerupCounter);
                 }
 
                 //this makes it so that when the power up is used and in progress it keeps track of the time
-                if(powerupused == true && powerupInProgress == true){
+                if(powerupused && powerupInProgress){
                     powerupInProgressCounter++;
                 }
 
                 //this resets the power up
-                if(powerupInProgress == true && powerupInProgressCounter >= 10){
+                if(powerupInProgress && powerupInProgressCounter >= 10){
                     powerupInProgress = false;
                     PlayManager.dropInterval -= 40;
                     powerupInProgressCounter = 0;
@@ -117,14 +117,14 @@ public class GamePanel extends JPanel implements Runnable, PowerUpObserver {
 
     private void update() {
 
-        if (KeyHandler.gamestart == false) {
+        if (!KeyHandler.gamestart) {
             mh.update();
         }
-        if (KeyHandler.gamequit == true)
+        if (KeyHandler.gamequit)
         {
             System.exit(0);
         }
-        else if(KeyHandler.pausePressed == false && pm.gameOver == false)
+        else if(!KeyHandler.pausePressed && !pm.gameOver)
         {
         pm.update();
         }
@@ -134,7 +134,7 @@ public class GamePanel extends JPanel implements Runnable, PowerUpObserver {
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D) g;
-        if (KeyHandler.gamestart == false)
+        if (!KeyHandler.gamestart)
         {
             mh.draw(g2);
         }
@@ -147,14 +147,14 @@ public class GamePanel extends JPanel implements Runnable, PowerUpObserver {
 
     @Override
     public void PowerUpUpdate() {
-       if(powerupused == false){
+       if(!powerupused){
            PlayManager.dropInterval += 40;
            System.out.println(PlayManager.dropInterval);
            powerupused = true;
            powerupInProgress = true;
            PowerupCounter = 0;
        }
-       else if(powerupused == true){
+       else if(powerupused){
            System.out.println("the power up is on cooldown");
        }
     }
